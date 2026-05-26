@@ -1,59 +1,39 @@
-# ðŸš€ [Project Name]
+---
+tagline: "A deterministic deep learning pipeline for handwritten digit classification and hyperparameter optimization."
+role: "Lead Machine Learning Engineer / Solo Developer"
+status: "completed"
+stack:
+  - TensorFlow / Keras
+  - Python
+  - NumPy
+  - Jupyter Notebooks
+highlights:
+  - "Architected an end-to-end computer vision pipeline achieving 80% classification accuracy on pixel-intensity feature vectors."
+  - "Designed and implemented a systematic hyperparameter tuning framework optimizing learning rates, batch sizes, and regularization boundaries."
+description: "A mathematically rigorous implementation of a deep neural network optimized for spatial feature extraction and classification of handwritten digits, demonstrating clean ML-ops practices in data preprocessing, model architecture design, and training convergence."
+---
 
-> *An advanced, highly-scalable software solution built with modern engineering practices.*
+## 🌟 Architectural Vision & System Design
 
-## ðŸŒŸ Architecture & Overview
-[Project Name] is designed with a focus on high availability, performance, and maintainability. Describe the core problem this repository solves and the architectural patterns used (e.g., Microservices, Event-Driven Architecture, Serverless).
+The system is architected as a modular, deterministic machine learning pipeline designed for reproducible training, evaluation, and inference. Rather than treating the model as an isolated script, the codebase is structured to mirror production-grade ML workflows, separating data ingestion, preprocessing, model compilation, and evaluation phases.
 
-## ðŸ’» Technical Stack & Proficiencies Showcase
-
-### Backend & Core Systems
-- **Languages:** Node.js, Python, Go, Java, C++
-- **Frameworks:** Express.js, Django, FastAPI, Spring Boot
-- **API Design:** RESTful APIs, GraphQL, gRPC, WebSockets
-
-### Frontend Engineering
-- **Core:** JavaScript (ES6+), TypeScript, HTML5, CSS3/SASS
-- **Frameworks:** React.js, Next.js, Vue.js, Angular
-- **State Management:** Redux, Context API, Zustand, MobX
-
-### Databases & Caching
-- **Relational (SQL):** PostgreSQL, MySQL
-- **NoSQL:** MongoDB, DynamoDB, Cassandra
-- **Caching & Message Queues:** Redis, Memcached, RabbitMQ, Apache Kafka
-
-### DevOps, Cloud & Infrastructure
-- **Cloud Providers:** AWS (EC2, S3, Lambda), Google Cloud Platform (GCP), Microsoft Azure
-- **Containerization & Orchestration:** Docker, Kubernetes (K8s)
-- **CI/CD & Automation:** GitHub Actions, Jenkins, GitLab CI, Terraform (IaC), Ansible
-
-## âš™ï¸ Engineering Best Practices
-- **Testing:** Comprehensive Unit, Integration, and End-to-End (E2E) testing (e.g., Jest, Cypress, PyTest).
-- **Code Quality:** Strict linting, static type checking, and rigorous code reviews.
-- **Security:** Implementation of OAuth 2.0, JWT, data encryption, and standard OWASP security practices.
-
-## ðŸ“ˆ Scalability & Performance
-Detail any specific performance optimizations made in this repository (e.g., database indexing, query optimization, CDN usage, load balancing strategies, horizontal scaling).
-
-## ðŸš€ Getting Started
-```bash
-# Clone the repository
-git clone https://github.com/ankittejyadav/[repo-name].git
-
-# Navigate into the project
-cd [repo-name]
-
-# Install dependencies
-npm install  # or equivalent package manager
-
-# Run the development server
-npm run dev
+```
+[ Raw Image Data ] ──> [ Vectorized Normalization ] ──> [ Tensor Reshaping ]
+                                                                │
+                                                                ▼
+[ Evaluation / Metrics ] <── [ Backpropagation ] <── [ Dense Neural Network ]
 ```
 
-## ðŸ”— Project Links
-- [Live Deployment / Demo](#)
-- [Comprehensive Documentation](#)
-- [System Architecture Diagram](#)
+### Core Data & System Flow
+*   **Ingestion / Input**: Raw 28x28 grayscale pixel matrices are ingested as vectorized NumPy arrays. The ingestion layer handles boundary validation to ensure input tensors conform to expected dimensional constraints.
+*   **Processing / Logic**: The execution pipeline performs deterministic min-max scaling, mapping pixel intensities from $[0, 255]$ to a normalized $[0.0, 1.0]$ float32 space. This prevents gradient explosion and ensures numerical stability. The normalized tensors are then flattened into a 1D feature vector ($784$ dimensions) to feed the input layer of the network.
+*   **Persistence & Caching**: Training states, weight matrices, and bias vectors are managed in-memory via TensorFlow's computational graph. The architecture is designed to support serialization to standard HDF5/SavedModel formats for downstream deployment to edge devices or cloud inference APIs.
 
 ---
-*This repository represents a sample of my technical capabilities. For a complete overview of my engineering portfolio, visit my [GitHub Profile](https://github.com/ankittejyadav).*
+
+## 💻 Tech Stack & Engineering Decisions
+
+Every technology choice was guided by the balance between mathematical precision, execution speed, and developer velocity.
+
+*   **Frontend / Presentation Layer**: **Jupyter Notebooks** serve as the interactive execution and visualization layer. This allows for real-time inspection of intermediate tensor states, loss curves, and confusion matrices, accelerating the iterative feedback loop.
+*   **ML Engine & APIs**: **TensorFlow & Keras** were selected to leverage their highly optimized C++ backends, automatic differentiation engines, and seamless abstraction of computational graphs. This ensures that the underlying matrix multiplications are executed
